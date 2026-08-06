@@ -1,0 +1,29 @@
+{
+  "name": "parmind-cli",
+  "version": "0.1.0",
+  "description": "Parmind skill + CLI — bring your Parmind knowledge base into Claude Code",
+  "type": "module",
+  "bin": {
+    "parmind-cli": "skills/parmind/scripts/parmind-cli.mjs"
+  },
+  "files": [
+    "skills"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NebulaeSoft/parmind-skill.git"
+  },
+  "homepage": "https://github.com/NebulaeSoft/parmind-skill#readme",
+  "bugs": {
+    "url": "https://github.com/NebulaeSoft/parmind-skill/issues"
+  },
+  "keywords": [
+    "parmind",
+    "claude-code",
+    "agent-skill",
+    "knowledge-base"
+  ]
+}

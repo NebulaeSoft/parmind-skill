@@ -10,14 +10,22 @@ your Minds, straight from the conversation.
 ## Install
 
 ```sh
-npx -y skills@1.5.21 add NebulaeSoft/parmind-skill@v0.0.1 --skill parmind
-node "$HOME/.claude/skills/parmind/scripts/parmind-cli.mjs" install
+npx github:NebulaeSoft/parmind-skill install
 ```
 
-The first command places the skill files (pinned installer, pinned release tag). The second runs
-the guided setup: it opens your browser to approve the account link, lets you pick a Mind, and
-wires your `CLAUDE.md` — one flow, safe to re-run any time. If you only want to authenticate,
-`… parmind-cli.mjs login` is the lighter alternative; running `install` later completes the rest.
+That runs the guided setup: it places the skill files, opens your browser to approve the account
+link, lets you pick a Mind, and wires your `CLAUDE.md` — one flow, safe to re-run any time. Pin a
+release with `npx github:NebulaeSoft/parmind-skill#v0.1.0 install`. If you only want to
+authenticate, swap `install` for `login`; running `install` later completes the rest.
+
+Prefer a persistent command, or installing for agents other than Claude Code?
+
+```sh
+npm i -g github:NebulaeSoft/parmind-skill   # then: parmind-cli install
+# or place the files yourself, then run the setup:
+npx -y skills@1.5.21 add NebulaeSoft/parmind-skill@v0.1.0 --skill parmind --agent '*'
+node "$HOME/.claude/skills/parmind/scripts/parmind-cli.mjs" install
+```
 
 ### Per-project Minds
 
