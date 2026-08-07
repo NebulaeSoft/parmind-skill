@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Bare `parmind-cli` for Claude Code's Bash tool (plugin bin/ joins PATH).
+exec node "$(cd "$(dirname "$0")/.." 2>/dev/null && pwd)/scripts/parmind-cli.mjs" "$@"

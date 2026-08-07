@@ -1,0 +1,17 @@
+{
+  "name": "parmind-plugins",
+  "owner": {
+    "name": "NebulaeSoft"
+  },
+  "metadata": {
+    "description": "Parmind plugins for Claude Code",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "parmind",
+      "source": "./skills/parmind",
+      "description": "Your Parmind Mind, in Claude Code — searchable, writable, and injected per turn."
+    }
+  ]
+}

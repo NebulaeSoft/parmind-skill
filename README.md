@@ -4,28 +4,39 @@ Give your agents better context through [Parmind](https://parmind.app) — your 
 base ("second brain"). This skill teaches **Claude Code** to search, read, and save knowledge in
 your Minds, straight from the conversation.
 
-> Built and verified for Claude Code. The [skills](https://github.com/vercel-labs/skills) installer
-> can place the files for other agents too (`--agent '*'`), but only Claude Code is tested today.
+> Built and verified for Claude Code, which installs it as a **plugin**. Other agents (Codex, Cursor,
+> Copilot, …) are on the roadmap but not supported yet.
 
 ## Install
 
-```sh
-npx github:NebulaeSoft/parmind-skill install
+Parmind is a Claude Code plugin, served from this repo's own marketplace:
+
+```
+/plugin marketplace add NebulaeSoft/parmind-skill
+/plugin install parmind@parmind-plugins
 ```
 
-That runs the guided setup: it places the skill files, opens your browser to approve the account
-link, lets you pick a Mind, and wires your `CLAUDE.md` — one flow, safe to re-run any time. Pin a
-release with `npx github:NebulaeSoft/parmind-skill#v0.1.0 install`. If you only want to
-authenticate, swap `install` for `login`; running `install` later completes the rest.
-
-Prefer a persistent command, or installing for agents other than Claude Code?
+Then link a Mind once — this opens your browser to approve the account link and lets you pick a Mind:
 
 ```sh
-npm i -g github:NebulaeSoft/parmind-skill   # then: parmind-cli install
-# or place the files yourself, then run the setup:
-npx -y skills@1.5.21 add NebulaeSoft/parmind-skill@v0.1.0 --skill parmind --agent '*'
-node "$HOME/.claude/skills/parmind/scripts/parmind-cli.mjs" install
+parmind-cli login
+parmind-cli status     # confirm what's linked
 ```
+
+The plugin ships the skill, the CLI and the per-turn context hook together. The hook is registered by
+the plugin's own `hooks/hooks.json` — nothing is merged into your `~/.claude/settings.json`, and
+disabling the plugin removes it atomically.
+
+**Updating.** Self-hosted marketplaces don't auto-update. After a new release:
+
+```
+/plugin marketplace update parmind-plugins
+```
+
+### Other agents
+
+Not supported yet. `parmind-cli install --agent <name>` fails loudly rather than half-installing a
+host with no context-hook transport — that would look like success and behave like nothing.
 
 ### Per-project Minds
 
@@ -89,6 +100,6 @@ where your key is sent (see [SECURITY.md](SECURITY.md)).
 
 ## Releases
 
-Git tags are the release mechanism (`v0.0.1`, …) — see [CHANGELOG](CHANGELOG.md). Installs go
-through `skills add` reading this repository at a pinned tag; GitHub Release assets are a
-convenience mirror for verification, never the install source.
+Git tags are the release mechanism (`v0.0.1`, …) — see [CHANGELOG](CHANGELOG.md). Claude Code reads
+this repository through the marketplace defined in `.claude-plugin/marketplace.json`; GitHub Release
+assets are a convenience mirror for verification, never the install source.

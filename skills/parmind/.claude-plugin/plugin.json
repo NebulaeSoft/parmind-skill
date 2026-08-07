@@ -1,0 +1,17 @@
+{
+  "name": "parmind",
+  "version": "0.1.0",
+  "description": "Search, read, and save to your Parmind knowledge base — with per-turn context injected from the Mind you've linked.",
+  "author": {
+    "name": "NebulaeSoft"
+  },
+  "homepage": "https://github.com/NebulaeSoft/parmind-skill",
+  "repository": "https://github.com/NebulaeSoft/parmind-skill",
+  "keywords": [
+    "knowledge-base",
+    "notes",
+    "memory",
+    "second-brain",
+    "parmind"
+  ]
+}

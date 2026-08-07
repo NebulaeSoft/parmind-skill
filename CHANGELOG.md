@@ -2,15 +2,37 @@
 
 ## v0.1.0 — 2026-08-07
 
-One-command install.
+Claude Code plugin. **Installation has changed — see below.**
 
-- Added a root `package.json` with a `bin` entry, so the repo is directly runnable from GitHub:
-  `npx github:NebulaeSoft/parmind-skill install`. No npm registry publish and no separate
-  `skills add` step required — the CLI bootstraps itself, then places the skill files.
-- `npm i -g github:NebulaeSoft/parmind-skill` installs a persistent `parmind-cli` command.
-- The two-step `skills add` + `parmind-cli install` flow still works and stays documented as
-  the alternative for non-Claude-Code agents.
-- Skill payload unchanged from v0.0.1.
+> This tag was re-issued on 2026-08-07 to carry the plugin surface. An earlier `v0.1.0` described
+> a `npx github:…` / `skills add` install flow that this release replaces.
+
+- **Parmind is now a Claude Code plugin**, served from this repo's own marketplace
+  (`.claude-plugin/marketplace.json`, marketplace id `parmind-plugins`):
+
+  ```
+  /plugin marketplace add NebulaeSoft/parmind-skill
+  /plugin install parmind@parmind-plugins
+  ```
+
+  This is the only supported way to install on Claude Code. `npx skills add` no longer places
+  the skill there.
+- **Proactive context.** A `UserPromptSubmit` hook consults the linked Mind each turn and injects
+  what is relevant. It is registered by the plugin's own `hooks/hooks.json` — nothing is merged
+  into your `~/.claude/settings.json`, and disabling the plugin removes the hook atomically.
+  The hook is fail-open by contract: it never blocks a turn, and it is bounded by both a 5s hook
+  timeout and the CLI's own `--deadline-ms`.
+- **`bin/parmind-cli`** joins PATH for Claude Code's Bash tool, so `parmind-cli` works without a
+  separate shim or a global npm install.
+- **Other agents (Codex, Cursor, Copilot, …) are not supported yet.**
+  `parmind-cli install --agent <name>` now fails with a clear message instead of half-installing a
+  host that has no context-hook transport. The skill payload itself stays agent-agnostic so these
+  can be enabled individually later.
+- `parmind-cli install` no longer places skill files — the plugin ships them. It still performs
+  account/Mind linking, and now writes its managed block to `AGENTS.md` (an existing `CLAUDE.md`
+  still wins if present).
+- Rebuilt CLI bundle; `SKILL.md` / `USAGE.md` rewritten for the adapter. The root `package.json`
+  `bin` entry is retained.
 
 ## v0.0.1 — 2026-07-30
 
