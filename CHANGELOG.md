@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.1 — 2026-08-11
+
+- Payload regenerated from parmind-sirius 6c32e362.
+
 ## v0.1.0 — 2026-08-07
 
 Claude Code plugin. **Installation has changed — see below.**

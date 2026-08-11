@@ -1,6 +1,6 @@
 {
   "name": "parmind-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Parmind skill + CLI — bring your Parmind knowledge base into Claude Code",
   "type": "module",
   "bin": {

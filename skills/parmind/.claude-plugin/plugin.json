@@ -1,6 +1,6 @@
 {
   "name": "parmind",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Search, read, and save to your Parmind knowledge base — with per-turn context injected from the Mind you've linked.",
   "author": {
     "name": "NebulaeSoft"
