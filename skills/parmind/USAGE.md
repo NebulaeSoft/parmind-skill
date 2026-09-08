@@ -77,6 +77,12 @@ parmind-cli node:update --id <id> --markdown "..." --mode replace --content-hash
 parmind-cli relation:create --source <idA> --target <idB> --name "..."
 ```
 
+### Deleting
+```
+parmind-cli node:delete --id <nodeId> --yes    # hard delete, no undo
+parmind-cli area:delete --id <areaId> --yes    # hard delete, no undo
+```
+
 ### Goals & Todos
 ```
 parmind-cli goal:create --name "..." [--due-date <iso>] [--markdown "..."] [--area <id>]
@@ -91,6 +97,8 @@ parmind-cli todo:list
 parmind-cli todo:get --id <todoId>
 parmind-cli todo:update --id <todoId> [--completed | --incomplete] [--name "..."] [--priority ...]
 parmind-cli todo:assignee --id <todoId> --assignee <collaboratorId>
+parmind-cli goal:delete --id <goalId> --yes    # hard delete, no undo
+parmind-cli todo:delete --id <todoId> --yes    # hard delete, no undo
 ```
 
 ### Account
@@ -106,6 +114,7 @@ parmind-cli doctor           # diagnose setup problems
 ## Conventions
 
 - **Confirm before mutating.** Never create, update, or delete without the user's agreement.
+- **Deletes are permanent.** Every `*:delete` command hard-deletes and requires `--yes`; get the user's explicit go-ahead before passing it — there's no undo and no trash to recover from.
 - **Mind scope.** The default Mind owns automatic context. Use `--kb <id>` only for a targeted
   query in another already-linked Mind; identify it in the response and do not persistently switch
   Minds on the user's behalf.

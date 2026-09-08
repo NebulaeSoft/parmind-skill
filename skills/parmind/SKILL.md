@@ -90,7 +90,7 @@ the user to run `parmind-cli link` so they can approve access in their browser.
 
 ## How to write
 
-**Always confirm with the user before creating or modifying notes.** No exceptions.
+**Always confirm with the user before creating, modifying, or deleting notes.** No exceptions.
 
 | Action | Command |
 |--------|---------|
@@ -131,6 +131,20 @@ multiple Areas at once. `area:create` also takes `--color`, `--icon`, and `--dat
 
 Use `[[wikilinks]]` in markdown — they resolve to real note links server-side.
 
+## How to delete
+
+Deleting is a **hard delete** — the row is gone, not archived, and there is no undo.
+Every delete command refuses to run without `--yes`; treat that flag as the one place
+this CLI still lets you skip confirming out loud, so get the user's explicit go-ahead
+first and only then pass it.
+
+| Action | Command |
+|--------|---------|
+| Delete a note or any node | `parmind-cli node:delete --id <nodeId> --yes` |
+| Delete a goal | `parmind-cli goal:delete --id <goalId> --yes` (its todos are left behind, unlinked) |
+| Delete a todo | `parmind-cli todo:delete --id <todoId> --yes` |
+| Delete an area | `parmind-cli area:delete --id <areaId> --yes` (nodes tagged with it are untouched) |
+
 ## Goals & Todos
 
 Parmind supports goals and todos linked to your knowledge base:
@@ -152,6 +166,8 @@ Parmind supports goals and todos linked to your knowledge base:
 | Complete a todo | `parmind-cli todo:update --id <todoId> --completed` |
 | Un-complete a todo | `parmind-cli todo:update --id <todoId> --incomplete` |
 | Assign a todo | `parmind-cli todo:assignee --id <todoId> --assignee <collaboratorId>` |
+| Delete a goal | `parmind-cli goal:delete --id <goalId> --yes` (see "How to delete") |
+| Delete a todo | `parmind-cli todo:delete --id <todoId> --yes` (see "How to delete") |
 
 `goal:update` and `todo:update` accept the same content flags as `node:update`
 (`--markdown`, `--markdown-file`, `--mode append/replace`, `--content-hash`).

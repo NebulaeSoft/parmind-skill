@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.3 — 2026-09-08
+
+- Payload regenerated from parmind-sirius 6b89360.
+
 ## v0.1.2 — 2026-09-03
 
 - Payload regenerated from parmind-sirius 2560914.
