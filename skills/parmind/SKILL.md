@@ -202,11 +202,15 @@ idempotent — it completes setup end-to-end). Do not retry the failed command.
 | Switch the global default | `parmind-cli link --kb <kbId> --global --yes` |
 | Drop this project's link | `parmind-cli unlink --yes` |
 | Sign in / re-link | `parmind-cli login` (add `--force` to re-link) |
+| Sign in without a browser on this machine | `parmind-cli login --no-wait` → user approves elsewhere → `parmind-cli login --code XXXX-XXXX` |
 | Sign out + revoke keys | `parmind-cli logout` |
 | Remove the skill | `parmind-cli uninstall --project` |
 
 These are the user's to run, not yours — `login` needs a browser and `logout` revokes
-credentials. Tell the user which one to run rather than running it for them.
+credentials. Tell the user which one to run rather than running it for them. The one exception
+is headless hosts: if you cannot keep a process waiting, run `parmind-cli login --no-wait`,
+show the user the printed link, and ask them for the completion code the page displays after
+approval; then run `parmind-cli login --code <code>`.
 
 `parmind-cli context` is invoked automatically by the UserPromptSubmit hook to
 produce the `<parmind-context>` block. Never call it by hand — use `search` instead.
